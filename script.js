@@ -24,18 +24,77 @@ var flip = document.querySelector('.flip-card');
 
 // Evento de cadastro que irá trocar as divs permitindo o uso do programa
 btnCadastro.addEventListener("click", function() {
-    nome.innerHTML = nomeUsuario.value;
-    valorSalario.innerHTML = salario.value;
-    container.style = " transform: rotateY(180deg);";
-    flip.style = "height: 800px;";
-    flip.style = "width: 600px;";
 
+    if (nomeUsuario.value != '') {
+
+        if (salario.value != 0 || salario.value != '') {
+
+            nome.innerHTML = nomeUsuario.value;
+            valorSalario.innerHTML = salario.value;
+            container.style = " transform: rotateY(180deg);";
+
+        } else {
+
+            alert("O salário digitado não é válido!")
+            alert("informe um salário válido!");
+            nomeUsuario.focus();
+        }
+
+            
+
+    } else {
+
+        alert("O nome digitado não é válido!")
+        alert("informe um nome válido!");
+        nomeUsuario.focus();
+
+    }
+    
 });
 
 //Criação das listas
-btnCadDespesa.addEventListener("click", function() {
+btnCadDespesa.addEventListener("click", addValores); 
+
+
+function addValores () {
+
+    if (nomeDespesa.value != '') { 
+
+        if (valorDespesa.value != 0 || valorDespesa.value != '') {
+
+            // Cria as variáveis Li com seus valores digitados
+            var liNome = '<li>' + nomeDespesa.value + '</li>';
+            var liValor = '<li>' + valorDespesa.value + '</li>';
+            
+            // Faz as Uls receberem as lis
+            listaNome.innerHTML += liNome;
+            listaValor.innerHTML += liValor;
+
+            // Zera os valores dos inputs
+            nomeDespesa.value = '';
+            valorDespesa.value = '';
+
+            testando = valorSalario.value = valorDespesa.value;
+            valorSalario.value = testando;
+            valorDespesa.value = testando;
+
+            // Dá foco na variável especificada que nese caso é o input.
+            nomeDespesa.focus();
+
+        } else {
+
+            alert("O valor digitado não é válido!")
+            alert("informe um valor válido!");
+            nomeUsuario.focus();
     
-    listaNome += "<li>"+ nomeDespesa.value +"<li>";
-    listaValor += "<li>"+ valorDespesa.value +"<li>";
+        }
+
+    } else {
+
+        alert("A despesa digitada não é válida!")
+        alert("informe uma despesa válido!");
+        nomeUsuario.focus();
+
+    }
     
-});
+}
